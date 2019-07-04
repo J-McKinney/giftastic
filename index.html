@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Gif-Tastic</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="https://meyerweb.com/eric/tools/css/reset/reset.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link type="text/javascript" src="main.js">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity=""
+        crossorigin="anonymous">
+</head>
+
+<body>
+
+    <header>
+        <div class="jumbotron">
+            <h1 class="display-6">It's Gif-Tastic!</h1>
+            <h4>These are just a few of my favorites:</h4>
+    </header>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <button type="button" class="btn btn-primary btn-lg btn-block" disabled>Movies/TV Show</button>
+            </div>
+            <div class="col-md-4">
+                <button type="button" class="btn btn-primary btn-lg btn-block" disabled>Gifs</button>
+            </div>
+            <div class="col-md-4">
+                <button type="button" class="btn btn-primary btn-lg btn-block" disabled>Bands</button>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <form id="movie-form">
+                    <label for="movie-input">Add Movie/TV Show</label>
+                    <input type="text" id="movie-input"><br>
+                    <input id="add-movie" type="submit" value="Add Movie">
+                </form>
+                <br>
+                <!-- movies/tv shows -->
+            </div>
+            <div class="col-md-4">
+                <form id="gif-form">
+                    <label for="gif-input">Add Gif</label>
+                    <input type="text" id="gif-input">
+                    <!-- <select class="form-control" id="num-records-select">
+                        <option value="1">1</option>
+                        <option value="5" selected="">5</option>
+                        <option value="10">10</option>
+                    </select> -->
+                    <br>
+                    <input id="add-gif" type="submit" value="Add Gif">
+                </form>
+                <br>
+                <!-- gifs -->
+            </div>
+            <div class="col-md-4">
+                <form id="band-form">
+                    <label for="band-input">Add Band</label>
+                    <input type="text" id="band-input"><br>
+                    <input id="add-band" type="submit" value="Add Band">
+                </form>
+                <br>
+                <!-- bands -->
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-4" id="movieButtons"></div>
+            <div class="col-md-4" id="gifButtons"></div>
+            <div class="col-md-4" id="bandButtons"></div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-4" id="movies-view"></div>
+            <div class="col-md-4" id="gifs-view"></div>
+            <div class="col-md-4" id="bands-view"></div>
+        </div>
+    </div>
+    <br>
+    <br>
+
+
+
+    <script src="main.js"></script>
+    <script src="http://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="http://code.jquery.com/jquery-migrate-1.4.1.js"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity=""
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity=""
+        crossorigin="anonymous"></script>
+</body>
+
+<footer>
+
+</footer>
+
+</html>
