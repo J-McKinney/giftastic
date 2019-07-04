@@ -1,5 +1,4 @@
 $("document").ready(function () {
-
     var movies = ["Dragon Ball Super", "Hell's Kitchen", "Jurassic Park"];
 
     function displayMovieInfo() {
@@ -17,8 +16,8 @@ $("document").ready(function () {
             $("#newMovie").append("<div>" + "Actors: " + response.Actors + "</div>");
             $("#newMovie").append("<div>" + "<img src='" + response.Poster + "' />" + "</div>");
         });
-    }
-    function renderButtons() {
+    };
+    function renderMovies() {
         $("#movieButtons").empty();
         for (var i = 0; i < movies.length; i++) {
             var a = $("<button>");
@@ -26,33 +25,61 @@ $("document").ready(function () {
             a.attr("data-name", movies[i]);
             a.text(movies[i]);
             $("#movieButtons").append(a);
-        }
-    }
+        };
+    };
     $("#add-movie").on("click", function (event) {
         event.preventDefault();
         var movie = $("#movie-input").val().trim();
         movies.push(movie);
-        renderButtons();
+        renderMovies();
     });
     $(document).on("click", ".movie", displayMovieInfo);
-    renderButtons();
+    renderMovies();
 })
 
 $("document").ready(function () {
-    var gifs = ["cats", "chef ramsey", "universe"];
+    var gifs = ["Cats", "Chef Ramsey", "Universe"];
 
-    function displayGif () {
+    function displayGifs() {
         var gif = $(this).attr("data-name");
-        var queryURL = "https://www.omdbapi.com/?t=" + movie + "&apikey=trilogy" 
-        "https://api.giphy.com/v1/gifs/search?api_key=qHu5bzg0go8o2WtfYZxsl7uxWRlGzjKy&q=" + gif + "&limit=10&offset=0&rating=R&lang=en";
+        var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + gif + "&limit=9&api_key=dc6zaTOxFJmzC";
+
+        $.ajax({
+            url: queryURL,
+            method: "GET"
+        }).then(function (response) {
+            console.log(response.data);
+            var gifUrl = response.data.image_original_url;
+            var gifImage = $("<img>");
+            gifImage.attr("src", gifUrl);
+            $("#images").prepend(gifImage);
+
+            // $("#gifs-view").prepend("<div id='newGif'></div>")
+            // $("#newGif").append("<div>" + "Rated: " + response.data.rating + "</div>");
+            // var imageGif = $("<img>");
+            // imageGif.attr("src", response.data.image_original_url);
+            // $("#gifs-view").prepend(imageGif);
+        });
+    };
+    function renderGifs() {
+        $("#gifButtons").empty();
+        for (var i = 0; i < gifs.length; i++) {
+            var a = $("<button>");
+            a.addClass("gif");
+            a.attr("data-name", gifs[i]);
+            a.text(gifs[i]);
+            $("#gifButtons").append(a);
+        }
     }
-
-
+    $("#add-gif").on("click", function (event) {
+        event.preventDefault();
+        var gif = $("#gif-input").val().trim();
+        gifs.push(gif);
+        renderGifs();
+    });
+    $(document).on("click", ".gif", displayGifs);
+    renderGifs();
 })
 
-$("document").ready(function () {
-    var bands = ["RHCP", "NF", "ODESZA"];
 
-
-
-})
+var bands = ["RHCP", "NF", "ODESZA"];
