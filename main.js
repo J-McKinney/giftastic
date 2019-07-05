@@ -38,29 +38,42 @@ $("document").ready(function () {
 })
 
 $("document").ready(function () {
-    var gifs = ["Cats", "Chef Ramsey", "Universe"];
+    var gifs = ["Cats", "Chef Ramsey", "Paul Robertson"];
 
     function displayGifs() {
         var gif = $(this).attr("data-name");
-        var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + gif + "&limit=9&api_key=dc6zaTOxFJmzC";
+        var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + gif + "&limit=10&api_key=dc6zaTOxFJmzC";
 
         $.ajax({
             url: queryURL,
             method: "GET"
         }).then(function (response) {
             console.log(response.data);
-            var gifUrl = response.data.image_original_url;
-            var gifImage = $("<img>");
-            gifImage.attr("src", gifUrl);
-            $("#images").prepend(gifImage);
-
-            // $("#gifs-view").prepend("<div id='newGif'></div>")
-            // $("#newGif").append("<div>" + "Rated: " + response.data.rating + "</div>");
-            // var imageGif = $("<img>");
-            // imageGif.attr("src", response.data.image_original_url);
-            // $("#gifs-view").prepend(imageGif);
+            var responseData = response.data;
+            for (var i = 0; i < responseData.length; i++) {
+                var newGif = $('<div class=gifs>');
+                var gifImage = $("<img>");
+                gifImage.attr("src", responseData[i].images.fixed_height_still.url);
+                gifImage.attr('title', "Rating: " + responseData[i].rating);
+                gifImage.attr('data-still', responseData[i].images.fixed_height_still.url);
+                gifImage.attr('data-state', 'still');
+                gifImage.addClass('gif');
+                gifImage.attr('data-animate', responseData[i].images.fixed_height.url);
+                newGif.append(gifImage);
+                $("#gifs-view").prepend(newGif);
+            }
         });
     };
+    $(document).on('click', '.gif', function () {
+        var state = $(this).attr('data-state');
+        if (state == 'still') {
+            $(this).attr('src', $(this).data('animate'));
+            $(this).attr('data-state', 'animate');
+        } else {
+            $(this).attr('src', $(this).data('still'));
+            $(this).attr('data-state', 'still');
+        };
+    });
     function renderGifs() {
         $("#gifButtons").empty();
         for (var i = 0; i < gifs.length; i++) {
