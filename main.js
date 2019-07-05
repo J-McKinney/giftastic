@@ -38,7 +38,7 @@ $("document").ready(function () {
 })
 
 $("document").ready(function () {
-    var gifs = ["Cats", "Chef Ramsey", "Paul Robertson"];
+    var gifs = ["Cats", "Space", "Paul Robertson"];
 
     function displayGifs() {
         var gif = $(this).attr("data-name");
@@ -51,27 +51,27 @@ $("document").ready(function () {
             console.log(response.data);
             var responseData = response.data;
             for (var i = 0; i < responseData.length; i++) {
-                var newGif = $('<div class=gifs>');
+                var newGif = $("<div>");
                 var gifImage = $("<img>");
                 gifImage.attr("src", responseData[i].images.fixed_height_still.url);
-                gifImage.attr('title', "Rating: " + responseData[i].rating);
-                gifImage.attr('data-still', responseData[i].images.fixed_height_still.url);
-                gifImage.attr('data-state', 'still');
-                gifImage.addClass('gif');
-                gifImage.attr('data-animate', responseData[i].images.fixed_height.url);
+                gifImage.attr("title", "Rating: " + responseData[i].rating);
+                gifImage.attr("data-still", responseData[i].images.fixed_height_still.url);
+                gifImage.attr("data-state", "still");
+                gifImage.addClass("gif");
+                gifImage.attr("data-animate", responseData[i].images.fixed_height.url);
                 newGif.append(gifImage);
                 $("#gifs-view").prepend(newGif);
             }
         });
     };
-    $(document).on('click', '.gif', function () {
-        var state = $(this).attr('data-state');
-        if (state == 'still') {
-            $(this).attr('src', $(this).data('animate'));
-            $(this).attr('data-state', 'animate');
+    $(document).on("click", ".gif", function () {
+        var state = $(this).attr("data-state");
+        if (state == "still") {
+            $(this).attr("src", $(this).data("animate"));
+            $(this).attr("data-state", "animate");
         } else {
-            $(this).attr('src', $(this).data('still'));
-            $(this).attr('data-state', 'still');
+            $(this).attr("src", $(this).data("still"));
+            $(this).attr("data-state", "still");
         };
     });
     function renderGifs() {
