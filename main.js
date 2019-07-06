@@ -1,7 +1,8 @@
 $("document").ready(function () {
     var movies = ["Dragon Ball Super", "Hell's Kitchen", "Jurassic Park"];
 
-    function displayMovieInfo() {
+    // function displayMovieInfo() {
+    $(document).on("click", ".movie", function () {
         var movie = $(this).attr("data-name");
         var queryURL = "https://www.omdbapi.com/?t=" + movie + "&apikey=trilogy";
 
@@ -16,7 +17,7 @@ $("document").ready(function () {
             $("#newMovie").append("<div>" + "Actors: " + response.Actors + "</div>");
             $("#newMovie").append("<div>" + "<img src='" + response.Poster + "' />" + "</div>");
         });
-    };
+    });
     function renderMovies() {
         $("#movieButtons").empty();
         for (var i = 0; i < movies.length; i++) {
@@ -25,74 +26,93 @@ $("document").ready(function () {
             a.attr("data-name", movies[i]);
             a.text(movies[i]);
             $("#movieButtons").append(a);
-        };
-    };
+        }
+    } renderMovies();
     $("#add-movie").on("click", function (event) {
         event.preventDefault();
-        var movie = $("#movie-input").val().trim();
-        movies.push(movie);
-        renderMovies();
+        var exist = false;
+        if (movies.indexOf($("#movie-input").val().trim().toLowerCase()) !== -1) {
+            exist = true;
+        } if ($("#movie-input").val().trim() !== "" && exist === false) {
+            var newMovie = $("#movie-input").val().trim().toLowerCase();
+            movies.push(newMovie);
+            var b = $("<button>").text(newMovie);
+            b.attr("data-name", newMovie);
+            b.addClass("movie");
+            $("movieButtons").append(b);
+        } $("#movie-input").val("");
     });
-    $(document).on("click", ".movie", displayMovieInfo);
-    renderMovies();
 })
-
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 $("document").ready(function () {
-    var gifs = ["Cats", "Space", "Paul Robertson"];
+    var gifs = ["Cats", "Bill Nye", "Paul Robertson"];
 
-    function displayGifs() {
+    $(document).on("click", ".giffy", function () {
         var gif = $(this).attr("data-name");
-        var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + gif + "&limit=10&api_key=dc6zaTOxFJmzC";
-
+        var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + gif + "&limit=1&api_key=dc6zaTOxFJmzC";
+        // dc6zaTOxFJmzC     4onUOnRBH23LD0PPRIXrpOPqLWKps9lH
         $.ajax({
             url: queryURL,
             method: "GET"
         }).then(function (response) {
-            console.log(response.data);
-            var responseData = response.data;
-            for (var i = 0; i < responseData.length; i++) {
-                var newGif = $("<div>");
-                var gifImage = $("<img>");
-                gifImage.attr("src", responseData[i].images.fixed_height_still.url);
-                gifImage.attr("title", "Rating: " + responseData[i].rating);
-                gifImage.attr("data-still", responseData[i].images.fixed_height_still.url);
-                gifImage.attr("data-state", "still");
-                gifImage.addClass("gif");
-                gifImage.attr("data-animate", responseData[i].images.fixed_height.url);
-                newGif.append(gifImage);
-                $("#gifs-view").prepend(newGif);
+            var results = response.data;
+            for (var i = 0; i < results.length; i++) {
+                var gifDiv = $("<div>");
+                var rating = results[i].rating;
+                var p = $("<p>").text("Rated: " + rating);
+                var gifsImage = $("<img class='result'>");
+                gifsImage.attr("src", results[i].images.fixed_width_still.url);
+                gifsImage.attr("data-still", results[i].images.fixed_width_still.url);
+                gifsImage.attr("data-animate", results[i].images.fixed_width.url);
+                gifsImage.attr("data-state", "still");
+                gifDiv.prepend(p);
+                gifDiv.prepend(gifsImage);
+                $("#gifs-view").prepend(gifDiv);
             }
         });
-    };
-    $(document).on("click", ".gif", function () {
+    });
+    $(document).on("click", ".result", function () {
         var state = $(this).attr("data-state");
-        if (state == "still") {
-            $(this).attr("src", $(this).data("animate"));
+        if (state === "still") {
+            $(this).attr("src", $(this).attr("data-animate"));
             $(this).attr("data-state", "animate");
         } else {
-            $(this).attr("src", $(this).data("still"));
+            $(this).attr("src", $(this).attr("data-still"));
             $(this).attr("data-state", "still");
-        };
-    });
+        }
+    })
     function renderGifs() {
         $("#gifButtons").empty();
         for (var i = 0; i < gifs.length; i++) {
             var a = $("<button>");
-            a.addClass("gif");
+            a.addClass("giffy");
             a.attr("data-name", gifs[i]);
             a.text(gifs[i]);
             $("#gifButtons").append(a);
         }
-    }
+    } renderGifs();
     $("#add-gif").on("click", function (event) {
         event.preventDefault();
-        var gif = $("#gif-input").val().trim();
-        gifs.push(gif);
-        renderGifs();
+        var exist = false;
+        if (gifs.indexOf($("#gif-input").val().trim().toLowerCase()) !== -1) {
+            exist = true;
+        } if ($("#gif-input").val().trim().toLowerCase() !== "" && exist === false) {
+            var newGif = $("#gif-input").val().trim().toLowerCase();
+            gifs.push(newGif);
+            var b = $("<button>").text(newGif);
+            b.attr("data-name", newGif);
+            b.addClass("giffy");
+            $("#gifButtons").append(b);
+        } $("#gif-input").val("");
     });
-    $(document).on("click", ".gif", displayGifs);
-    renderGifs();
-})
+});
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 var bands = ["RHCP", "NF", "ODESZA"];
+
+// function lower() {
+//     if (event.keyCode >= 8 && event.keyCode <= 202) {
+//         userGuess(event.key.toLowerCase());
+//     }
+// }
