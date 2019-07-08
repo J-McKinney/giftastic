@@ -1,7 +1,6 @@
 $("document").ready(function () {
     var movies = ["Dragon Ball Super", "Hell's Kitchen", "Jurassic Park"];
 
-    // function displayMovieInfo() {
     $(document).on("click", ".movie", function () {
         var movie = $(this).attr("data-name");
         var queryURL = "https://www.omdbapi.com/?t=" + movie + "&apikey=trilogy";
@@ -10,7 +9,6 @@ $("document").ready(function () {
             url: queryURL,
             method: "GET"
         }).then(function (response) {
-            console.log(response)
             $("#movies-view").prepend("<div id='newMovie'></div>")
             $("#newMovie").append("<div>" + "Rated: " + response.Rated + "</div>");
             $("#newMovie").append("<div>" + "Plot: " + response.Plot + "</div>");
@@ -49,7 +47,7 @@ $("document").ready(function () {
 
     $(document).on("click", ".giffy", function () {
         var gif = $(this).attr("data-name");
-        var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + gif + "&limit=1&api_key=dc6zaTOxFJmzC";
+        var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + gif + "&limit=10&api_key=4onUOnRBH23LD0PPRIXrpOPqLWKps9lH";
         // dc6zaTOxFJmzC     4onUOnRBH23LD0PPRIXrpOPqLWKps9lH
         $.ajax({
             url: queryURL,
@@ -108,9 +106,56 @@ $("document").ready(function () {
 });
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+$("document").ready(function () {
+    var bands = ["RHCP", "NF", "ODESZA"];
 
-var bands = ["RHCP", "NF", "ODESZA"];
-
+    $(document).on("click", ".bandsy", function () {
+        var band = $(this).attr("data-name");
+        // function myBand(Band) {
+        var queryURL = "https://rest.bandsintown.com/artists/" + band + "?app_id=codingbootcamp";
+        //   6c3decdc-7014-4323-9ec0-c94df0a6061e   API-key
+        $.ajax({
+            url: queryURL,
+            method: "GET"
+        }).then(function (response) {
+            var bandName = $("<h1>").text(response.name);
+            var trackerCount = $("<h3>").text("Number of fans tracking this band: " + response.tracker_count);
+            var bandTour = $("<a>").attr("href", response.url).text("-See Tour Dates-");
+            var bandImage = $("<img width='250'>").attr("src", response.image_url);
+            $("#bands-view").prepend(bandName, trackerCount, bandTour, bandImage);
+            ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            // $("#bands-view").prepend("<div id='newBand'></div>");
+            // $("#newBand").attr("<div>" + response.name + "</div>");
+            // $("#newBand").attr("<div>" + "Fans Tracking Artist: " + response.tracker_count + "</div>");
+            // $("#newBand").attr("<div>" + "<img src=" + response.image_url + "/>" + "</div>");
+            /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        });
+    });
+    function renderBands() {
+        $("#bandButtons").empty();
+        for (var i = 0; i < bands.length; i++) {
+            var a = $("<button>");
+            a.addClass("bandsy");
+            a.attr("data-name", bands[i]);
+            a.text(bands[i]);
+            $("#bandButtons").append(a);
+        }
+    } renderBands();
+    $("#add-band").on("click", function (event) {
+        event.preventDefault();
+        var exist = false;
+        if (bands.indexOf($("#band-input").val().trim().toLowerCase()) !== -1) {
+            exist = true;
+        } if ($("#band-input").val().trim().toLowerCase() !== "" && exist === false) {
+            var newBand = $("#band-input").val().trim().toLowerCase();
+            bands.push(newBand);
+            var c = $("<button>").text(newBand);
+            c.attr("data-name", newBand);
+            c.addClass("bandsy");
+            $("#bandButtons").append(c);
+        } $("#band-input").val("");
+    });
+});
 // function lower() {
 //     if (event.keyCode >= 8 && event.keyCode <= 202) {
 //         userGuess(event.key.toLowerCase());
