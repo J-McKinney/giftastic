@@ -14,34 +14,43 @@
         crossorigin="anonymous">
 </head>
 
-<body background="woodgrain-580111_1280 (1).jpg">
+<body>
+        <!-- background="woodgrain-580111_1280 (1).jpg" -->
+        <!-- background color messes with the text too much, choose another background -->
 
     <header>
-        <!-- <div class="jumbotron">
-            <h1 class="display-6">It's Gif-Tastic!</h1>
-            <h4>These are just a few of my favorites:</h4> -->
+
     </header>
+
     <div class="jumbotron">
         <h1 class="display-6">It's Gif-Tastic!</h1>
         <h4>These are just a few of my favorites:</h4>
+
         <br>
+
         <div class="container" id="con1">
             <div class="row">
                 <div class="col-md-4">
                     <button type="button" class="btn btn-dark btn-lg btn-block" disabled>Movies/TV Show</button>
                 </div>
+
                 <br>
+
                 <div class="col-md-4">
                     <button type="button" class="btn btn-dark btn-lg btn-block" disabled>Gifs</button>
                 </div>
+
                 <br>
+
                 <div class="col-md-4">
                     <button type="button" class="btn btn-dark btn-lg btn-block" disabled>Bands</button>
                 </div>
             </div>
         </div>
     </div>
+
     <br>
+
     <div class="container">
         <div class="row">
             <div class="col-md-4">
@@ -50,7 +59,9 @@
                     <input type="text" id="movie-input"><br>
                     <input id="add-movie" type="submit" value="Add Movie">
                 </form>
+
                 <br>
+
                 <!-- movies/tv shows -->
             </div>
             <div class="col-md-4">
@@ -60,18 +71,20 @@
                     <input id="add-gif" type="submit" value="Add Gif">
                 </form>
                 <div class="form-group">
-                        <label for="numberOfGifs"><strong>Number of Gifs:</strong></label>
-                        <select class="form-control" id="numberOfGifs">
-                            <option value="1" selected="">1</option>
-                            <!-- Setting the option for 5 as default -->
-                            <option value="5">5</option>
-                            <option value="10">10</option>
-                            <option value="15">15</option>
-                            <option value="20">20</option>
-                            <option value="25">25</option>
-                        </select>
-                    </div>
+                    <label for="numberOfGifs"><strong>Number of Gifs:</strong></label>
+                    <select class="form-control" id="numberOfGifs">
+                        <option value="1" selected="">1</option>
+                        <!-- Setting the option for 1 as default -->
+                        <option value="5">5</option>
+                        <option value="10">10</option>
+                        <option value="15">15</option>
+                        <option value="20">20</option>
+                        <option value="25">25</option>
+                    </select>
+                </div>
+
                 <br>
+
                 <!-- gifs -->
             </div>
             <div class="col-md-4">
@@ -80,12 +93,16 @@
                     <input type="text" id="band-input"><br>
                     <input id="add-band" type="submit" value="Add Band">
                 </form>
+
                 <br>
+
                 <!-- bands -->
             </div>
         </div>
     </div>
+
     <br>
+
     <div class="container">
         <div class="row">
             <div class="col-md-4" id="movieButtons"></div>
@@ -93,7 +110,9 @@
             <div class="col-md-4" id="bandButtons"></div>
         </div>
     </div>
+
     <br>
+
     <div class="container">
         <div class="row">
             <div class="col-md-4" id="movies-view"></div>
@@ -101,6 +120,7 @@
             <div class="col-md-4" id="bands-view"></div>
         </div>
     </div>
+
     <br>
     <br>
 

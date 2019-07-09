@@ -59,7 +59,6 @@ $("document").ready(function () {
             var results = response.data;
             console.log(response.data);
             for (var i = 0; i < results.length; i++) {
-                // gifLimit = $("#numberOfGifs").parseInt() * gifLimit;
                 var gifDiv = $("<div>");
                 var rating = results[i].rating;
                 var p = $("<p>").text("Rated: " + rating);
