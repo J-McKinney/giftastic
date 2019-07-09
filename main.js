@@ -44,17 +44,22 @@ $("document").ready(function () {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 $("document").ready(function () {
     var gifs = ["Cats", "Bill Nye", "Paul Robertson"];
-
+    
     $(document).on("click", ".giffy", function () {
         var gif = $(this).attr("data-name");
-        var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + gif + "&limit=10&api_key=4onUOnRBH23LD0PPRIXrpOPqLWKps9lH";
-        // dc6zaTOxFJmzC     4onUOnRBH23LD0PPRIXrpOPqLWKps9lH
+        var gifLimit = parseInt($("#numberOfGifs").val());
+        // var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + gif + "&limit=10&api_key=4onUOnRBH23LD0PPRIXrpOPqLWKps9lH";
+        var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + gif + "&limit=" + gifLimit + "&api_key=4onUOnRBH23LD0PPRIXrpOPqLWKps9lH";
+        // dc6zaTOxFJmzC     4onUOnRBH23LD0PPRIXrpOPqLWKps9lH   var limit = $("#numberOfGifs");
+
         $.ajax({
             url: queryURL,
             method: "GET"
         }).then(function (response) {
             var results = response.data;
+            console.log(response.data);
             for (var i = 0; i < results.length; i++) {
+                // gifLimit = $("#numberOfGifs").parseInt() * gifLimit;
                 var gifDiv = $("<div>");
                 var rating = results[i].rating;
                 var p = $("<p>").text("Rated: " + rating);
@@ -111,7 +116,6 @@ $("document").ready(function () {
 
     $(document).on("click", ".bandsy", function () {
         var band = $(this).attr("data-name");
-        // function myBand(Band) {
         var queryURL = "https://rest.bandsintown.com/artists/" + band + "?app_id=codingbootcamp";
         //   6c3decdc-7014-4323-9ec0-c94df0a6061e   API-key
         $.ajax({
@@ -123,12 +127,6 @@ $("document").ready(function () {
             var bandTour = $("<a>").attr("href", response.url).text("-See Tour Dates-");
             var bandImage = $("<img width='250'>").attr("src", response.image_url);
             $("#bands-view").prepend(bandName, trackerCount, bandTour, bandImage);
-            ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-            // $("#bands-view").prepend("<div id='newBand'></div>");
-            // $("#newBand").attr("<div>" + response.name + "</div>");
-            // $("#newBand").attr("<div>" + "Fans Tracking Artist: " + response.tracker_count + "</div>");
-            // $("#newBand").attr("<div>" + "<img src=" + response.image_url + "/>" + "</div>");
-            /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         });
     });
     function renderBands() {
@@ -161,3 +159,4 @@ $("document").ready(function () {
 //         userGuess(event.key.toLowerCase());
 //     }
 // }
+
