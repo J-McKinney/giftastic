@@ -13,7 +13,7 @@ $("document").ready(function () {
             $("#newMovie").append("<div>" + "Rated: " + response.Rated + "</div>");
             $("#newMovie").append("<div>" + "Plot: " + response.Plot + "</div>");
             $("#newMovie").append("<div>" + "Actors: " + response.Actors + "</div>");
-            $("#newMovie").append("<div>" + "<img src='" + response.Poster + "' />" + "</div>");
+            $("#newMovie").append("<div>" + "<img width='165' src=" + response.Poster + " />" + "</div>");
         });
     });
     function renderMovies() {
@@ -41,10 +41,11 @@ $("document").ready(function () {
         } $("#movie-input").val("");
     });
 })
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 $("document").ready(function () {
     var gifs = ["Cats", "Bill Nye", "Paul Robertson"];
-    
+
     $(document).on("click", ".giffy", function () {
         var gif = $(this).attr("data-name");
         var gifLimit = parseInt($("#numberOfGifs").val());
@@ -62,7 +63,7 @@ $("document").ready(function () {
                 var gifDiv = $("<div>");
                 var rating = results[i].rating;
                 var p = $("<p>").text("Rated: " + rating);
-                var gifsImage = $("<img class='result'>");
+                var gifsImage = $("<img width='165' class='result'>");
                 gifsImage.attr("src", results[i].images.fixed_width_still.url);
                 gifsImage.attr("data-still", results[i].images.fixed_width_still.url);
                 gifsImage.attr("data-animate", results[i].images.fixed_width.url);
@@ -105,7 +106,11 @@ $("document").ready(function () {
             b.attr("data-name", newGif);
             b.addClass("giffy");
             $("#gifButtons").append(b);
+            ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            // localStorage.clear();
+            // localStorage.setItem("gif", newGif);
         } $("#gif-input").val("");
+        // $("#gifButtons").append(localStorage.getItem("gif"));
     });
 });
 
@@ -122,9 +127,9 @@ $("document").ready(function () {
             method: "GET"
         }).then(function (response) {
             var bandName = $("<h1>").text(response.name);
-            var trackerCount = $("<h3>").text("Number of fans tracking this band: " + response.tracker_count);
-            var bandTour = $("<a>").attr("href", response.url).text("-See Tour Dates-");
-            var bandImage = $("<img width='250'>").attr("src", response.image_url);
+            var trackerCount = $("<h3>").text("Fans Tracking: " + response.tracker_count);
+            var bandTour = $("<a>").attr("href", response.url).text("-Tour Dates-");
+            var bandImage = $("<img width='165'>").attr("src", response.image_url);
             $("#bands-view").prepend(bandName, trackerCount, bandTour, bandImage);
         });
     });

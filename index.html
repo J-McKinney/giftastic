@@ -15,8 +15,6 @@
 </head>
 
 <body>
-        <!-- background="woodgrain-580111_1280 (1).jpg" -->
-        <!-- background color messes with the text too much, choose another background -->
 
     <header>
 
@@ -26,24 +24,49 @@
         <h1 class="display-6">It's Gif-Tastic!</h1>
         <h4>These are just a few of my favorites:</h4>
 
-        <br>
+        <!-- <br> -->
 
-        <div class="container" id="con1">
+        <div class="container" id="conSave">
             <div class="row">
-                <div class="col-md-4">
-                    <button type="button" class="btn btn-dark btn-lg btn-block" disabled>Movies/TV Show</button>
+                <div class="col-sm-4">
+                    <button type="button" class="btn btn-dark btn-lg btn-block" disabled>Movies/TV
+                        Show</button>
                 </div>
 
                 <br>
 
-                <div class="col-md-4">
+                <div class="col-sm-4">
                     <button type="button" class="btn btn-dark btn-lg btn-block" disabled>Gifs</button>
                 </div>
 
                 <br>
 
-                <div class="col-md-4">
+                <div class="col-sm-4">
                     <button type="button" class="btn btn-dark btn-lg btn-block" disabled>Bands</button>
+                </div>
+            </div>
+        </div>
+
+        <br>
+
+        <div class="container" id="conClear">
+            <div class="row">
+                <div class="col-sm-4">
+                    <button id="clearMovie" type="button" class="btn btn-danger btn-lg btn-block">Clear your Movies/TV
+                        Show</button>
+                </div>
+
+                <br>
+
+                <div class="col-sm-4">
+                    <button id="clearGif" type="button" class="btn btn-danger btn-lg btn-block">Clear your Gifs</button>
+                </div>
+
+                <br>
+
+                <div class="col-sm-4">
+                    <button id="clearBand" type="button" class="btn btn-danger btn-lg btn-block">Clear your
+                        Bands</button>
                 </div>
             </div>
         </div>
@@ -53,7 +76,7 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-sm-4">
                 <form id="movie-form">
                     <label for="movie-input"><strong>Add Movie/TV Show:</strong></label>
                     <input type="text" id="movie-input"><br>
@@ -64,7 +87,7 @@
 
                 <!-- movies/tv shows -->
             </div>
-            <div class="col-md-4">
+            <div class="col-sm-4">
                 <form id="gif-form">
                     <label for="gif-input"><strong>Add Gif:</strong></label>
                     <input type="text" id="gif-input"><br>
@@ -87,7 +110,7 @@
 
                 <!-- gifs -->
             </div>
-            <div class="col-md-4">
+            <div class="col-sm-4">
                 <form id="band-form">
                     <label for="band-input"><strong>Add Band:</strong></label>
                     <input type="text" id="band-input"><br>
@@ -105,9 +128,9 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-md-4" id="movieButtons"></div>
-            <div class="col-md-4" id="gifButtons"></div>
-            <div class="col-md-4" id="bandButtons"></div>
+            <div class="col-sm-4" id="movieButtons"></div>
+            <div class="col-sm-4" id="gifButtons"></div>
+            <div class="col-sm-4" id="bandButtons"></div>
         </div>
     </div>
 
@@ -115,9 +138,9 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-md-4" id="movies-view"></div>
-            <div class="col-md-4" id="gifs-view"></div>
-            <div class="col-md-4" id="bands-view"></div>
+            <div class="col-sm-4" id="movies-view"></div>
+            <div class="col-sm-4" id="gifs-view"></div>
+            <div class="col-sm-4" id="bands-view"></div>
         </div>
     </div>
 

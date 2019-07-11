@@ -23,6 +23,19 @@ div {
 
 }
 
-@media only screen and (max-width: 640px) {
+@media only screen and (max-width: 641px) {
+#gif-form {
+    margin-top: 24px;
+}
+#band-form {
+    margin-top: 24px;
+}
+
+#movies-view,
+#gifs-view,
+#bands-view {
+    overflow: auto;
+    clear: both;
+}
 
 }
