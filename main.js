@@ -108,7 +108,7 @@ $("document").ready(function () {
             $("#gifButtons").append(b);
             ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
             // localStorage.clear();
-            // localStorage.setItem("gif", newGif);
+            // localStorage.setItem("gifList", newGif);
         } $("#gif-input").val("");
         // $("#gifButtons").append(localStorage.getItem("gif"));
     });
